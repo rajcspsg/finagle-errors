@@ -1,26 +1,12 @@
 import com.twitter.finagle.Http;
-import com.twitter.finagle.stats.StatsReceiver;
-import com.twitter.finagle.tracing.Tracer;
-import com.twitter.util.Duration;
+import com.twitter.finagle.param.Logger;
 
 public class JavaMain {
     public static void main(String[] args) {
 
-        StatsReceiver statsReceiver  = null;
-        Tracer tracer  = null;
-        Duration requestTimeout  =null;
-        Duration connectTimeout  = null;
+        java.util.logging.Logger loggerFinagle = java.util.logging.Logger.getLogger("FinagleLogger");
 
-//        Http.client()
-//                .withLabel("clientname")
-//                .withStatsReceiver(statsReceiver)
-//                .withTracer(tracer)
-//                .withRequestTimeout(requestTimeout)
-//                .withTransport.connectTimeout(connectTimeout)
-//                .withSessionQualifier.noFailureAccrual()
-//                .withSessionQualifier.noFailFast()
-//                .withSession.acquisitionTimeout(connectTimeout)
-//                .withSessionPool.maxSize(1)
-//                .newService("localhost:10000,localhost:10001");
+        Http.client()
+               .configured(new Logger(loggerFinagle));
     }
 }
